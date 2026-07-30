@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   hydrateScams();
   hydrateFAQs();
   hydrateSecurityTips();
-  hydrateNewsletterForm();
 });
 
 function esc(str = "") {
@@ -137,24 +136,8 @@ async function hydrateSecurityTips() {
 /* ---------------------------------------------------------------
    Footer newsletter subscribe form (injected on every page — see footer-newsletter.js)
    --------------------------------------------------------------- */
-function hydrateNewsletterForm() {
-  const form = document.getElementById("newsletter-form");
-  if (!form || typeof CSIApi === "undefined") return;
 
-  const input = document.getElementById("newsletter-email");
-  const msg = document.getElementById("newsletter-msg");
+/* ---------------------------------------------------------------
+   Footer newsletter subscribe form
+   --------------------------------------------------------------- */
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    msg.textContent = "";
-    try {
-      const res = await CSIApi.subscribeNewsletter(input.value.trim());
-      msg.textContent = res.message || "Subscribed!";
-      msg.style.color = "var(--green-500)";
-      form.reset();
-    } catch (err) {
-      msg.textContent = err.message || "Could not subscribe. Please try again.";
-      msg.style.color = "var(--red-500)";
-    }
-  });
-}
