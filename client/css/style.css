@@ -1345,3 +1345,142 @@ button { font-family: inherit; cursor: pointer; }
     padding:15px;
     border-radius:10px;
 }
+
+/* ==========================================================================
+   FULL RESPONSIVE OVERHAUL — additive, mobile-first fallbacks
+   Covers large desktop → laptop → tablet → large phone → small phone.
+   Nothing above is removed; these rules layer on top at their breakpoints.
+   ========================================================================== */
+
+/* ---------- Fluid container padding ---------- */
+@media (max-width: 640px) {
+  .container { padding: 0 18px; }
+}
+@media (max-width: 380px) {
+  .container { padding: 0 14px; }
+}
+
+/* ---------- Large tablet / small laptop (1200px) ---------- */
+@media (max-width: 1200px) {
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+/* ---------- Tablet (1024px) — extra coverage beyond original block ---------- */
+@media (max-width: 1024px) {
+  .hero { padding: 56px 0 70px; }
+  .hero-copy p.lead { max-width: 60ch; }
+  .checklist-grid { grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); }
+  .card-grid { grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
+  .admin-stats-grid { grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); }
+}
+
+/* ---------- Small tablet / large phone landscape (900px) ---------- */
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .quiz-card { padding: 24px 22px 20px; }
+  .admin-main { padding: 26px 22px; }
+  .modal-box { max-width: 90vw; }
+}
+
+/* ---------- Phone landscape / narrow tablet (780px) — extra coverage ---------- */
+@media (max-width: 780px) {
+  .navbar .container { gap: 12px; }
+  .brand { font-size: 1.02rem; }
+  .brand .brand-mark { width: 30px; height: 30px; }
+  .section { padding: 64px 0; }
+  .section--tight { padding: 44px 0; }
+  .section-head { margin-bottom: 34px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 26px; }
+  .contact-grid { gap: 28px; }
+  .form-card, .contact-info-card { padding: 24px; }
+  .auth-shell { padding: 32px 24px; }
+  .quiz-question { font-size: 1.05rem; }
+  .quiz-result .score-num { font-size: 2.4rem; }
+  .admin-topbar { flex-direction: column; align-items: flex-start; }
+  .admin-topbar h1 { font-size: 1.3rem; }
+  .table-responsive { -webkit-overflow-scrolling: touch; }
+  .admin-table, .history-table { min-width: 520px; }
+  .history-header h2 { font-size: 1.5rem; }
+  .history-card { padding: 22px; }
+  .review-card { padding: 18px; }
+}
+
+/* ---------- Phone portrait (640px) ---------- */
+@media (max-width: 640px) {
+  .nav-actions .btn { padding: 10px 16px; font-size: 0.88rem; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .stat-card { padding: 20px 14px; }
+  .card-grid, .checklist-grid { grid-template-columns: 1fr; }
+  .scam-card-head { padding: 18px 18px; gap: 12px; }
+  .scam-card-head h3 { font-size: 1rem; }
+  .scam-card-inner { padding: 20px 18px 22px; }
+  .phish-type { padding: 22px 0; gap: 18px; }
+  .mock-message { font-size: 0.8rem; padding: 15px 16px; }
+  .timeline-step { padding: 18px 16px; gap: 14px; }
+  .timeline-step .step-num { width: 32px; height: 32px; font-size: 0.85rem; }
+  .cta-band { padding: 46px 18px; }
+  .emergency-banner { padding: 20px 20px; gap: 14px; }
+  .emergency-banner .helpline-num { font-size: 1.7rem; }
+  .footer-newsletter { padding: 20px; }
+  .site-footer { padding: 44px 0 22px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; margin-bottom: 30px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .quiz-shell { padding: 0 2px; }
+  .quiz-option { padding: 12px 14px; font-size: 0.9rem; }
+  .modal-box { padding: 22px; }
+  .toast { left: 18px; right: 18px; transform: translateY(20px); width: auto; text-align: center; justify-content: center; }
+  .toast.show { transform: translateY(0); }
+  .back-to-top { width: 42px; height: 42px; bottom: 18px; right: 18px; }
+  .badge { padding: 6px 12px; font-size: 12px; }
+  .history-header h2 { font-size: 1.3rem; }
+  .history-table th, .history-table td { padding: 12px; font-size: 14px; }
+  .question-number { padding: 6px 14px; font-size: 0.85rem; }
+}
+
+/* ---------- Small phone (480px) ---------- */
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .search-results { width: min(340px, calc(100vw - 32px)); }
+  .dos-donts .col { padding: 18px; }
+  .pw-demo { padding: 22px 18px; }
+  .check-card { padding: 18px; }
+  .faq-q { font-size: 0.94rem; padding: 16px 2px; }
+  .faq-a p { font-size: 0.88rem; }
+  .form-group input, .form-group select, .form-group textarea { padding: 11px 13px; font-size: 0.9rem; }
+  .admin-stats-grid { grid-template-columns: 1fr 1fr; }
+  .admin-stat { padding: 16px; }
+  .admin-stat .num { font-size: 1.5rem; }
+  .admin-row-actions { gap: 6px; }
+  .icon-btn { width: 30px; height: 30px; }
+  .quiz-result { padding: 30px 18px; }
+  .quiz-result .score-num { font-size: 2rem; }
+}
+
+/* ---------- Extra small phone (380px and below) ---------- */
+@media (max-width: 380px) {
+  .brand { font-size: 0.94rem; gap: 8px; }
+  .brand .brand-mark { width: 28px; height: 28px; }
+  .nav-toggle { width: 38px; height: 38px; font-size: 1rem; }
+  .btn { padding: 12px 20px; font-size: 0.88rem; }
+  .hero-copy h1 { font-size: 1.8rem; }
+  .admin-stats-grid { grid-template-columns: 1fr; }
+  .emergency-banner .helpline-num { font-size: 1.4rem; }
+  .newsletter-form input { min-width: 0; width: 100%; }
+}
+
+/* ---------- Ensure wide data tables scroll instead of overflowing the page ---------- */
+.admin-table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.admin-table thead, .admin-table tbody { display: table; width: 100%; table-layout: auto; }
+
+/* ---------- Images / iframes / embeds never overflow their container ---------- */
+img, svg, video, iframe, canvas { max-width: 100%; height: auto; }
+
+/* ---------- Prevent any fixed-width element from forcing horizontal scroll ---------- */
+html, body { overflow-x: hidden; max-width: 100%; }
