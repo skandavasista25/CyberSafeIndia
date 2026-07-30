@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How to Identify Phishing — CyberSafe India</title>
+<meta name="description" content="Learn to identify email phishing, SMS phishing (smishing), voice phishing (vishing), fake login pages, and suspicious links with real example messages." />
+<link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+      Cyber<span class="accent">Safe</span>&nbsp;India
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html">Home</a>
+      <a href="scams.html">Latest Scams</a>
+      <a href="phishing.html">Phishing</a>
+      <a href="password-safety.html">Password Safety</a>
+      <a href="upi-safety.html">Safe UPI</a>
+      <a href="reporting.html">Report Cyber Crime</a>
+      <a href="security-tips.html">Security Tips</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="login.html">Login</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="search-wrap">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" class="search-input" placeholder="Search topics…" aria-label="Search cyber safety topics" />
+        </div>
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / How to Identify Phishing</p>
+      <p class="eyebrow">Look before you click</p>
+      <h1>How to Identify Phishing</h1>
+      <p>Phishing tries to make a fake message feel official. Here's what each version looks like, and the tells that give it away.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="phish-type reveal" id="email-phishing">
+        <div>
+          <span class="icon-badge"><i class="fa-solid fa-envelope"></i></span>
+          <h3>Email Phishing</h3>
+          <p>Emails pretending to be from a bank, employer, or well-known company, designed to make you click a link or open an attachment.</p>
+          <ul class="tell-signs">
+            <li><i class="fa-solid fa-flag"></i> Sender address looks close to real but slightly off (e.g. <span style="font-family:var(--font-mono)">support@sbi-secure.info</span>).</li>
+            <li><i class="fa-solid fa-flag"></i> Generic greeting like "Dear Customer" instead of your name.</li>
+            <li><i class="fa-solid fa-flag"></i> Urgent subject lines: "Account Suspended", "Action Required in 24 Hours".</li>
+          </ul>
+        </div>
+        <div class="mock-message glass">
+          <span class="mm-tag">Example — do not click</span>
+          <p style="margin:6px 0 10px;">From: <span class="flag">accounts@sbi-secure.info</span><br/>Subject: <span class="flag">Your account will be suspended today</span></p>
+          <p style="margin:0;">Dear Customer,<br/>We noticed unusual activity. <span class="flag">Click here</span> within 24 hours to verify your KYC or your account will be permanently blocked.</p>
+        </div>
+      </div>
+
+      <div class="phish-type reveal" id="smishing">
+        <div>
+          <span class="icon-badge"><i class="fa-solid fa-comment-sms"></i></span>
+          <h3>SMS Phishing (Smishing)</h3>
+          <p>Short, urgent text messages with a link — designed to be read quickly on a phone, where fake URLs are harder to inspect.</p>
+          <ul class="tell-signs">
+            <li><i class="fa-solid fa-flag"></i> Shortened or unfamiliar links instead of the bank's real domain.</li>
+            <li><i class="fa-solid fa-flag"></i> Claims about KYC expiry, blocked cards, or electricity disconnection.</li>
+            <li><i class="fa-solid fa-flag"></i> Sent from a random 10-digit number rather than an official sender ID.</li>
+          </ul>
+        </div>
+        <div class="mock-message glass">
+          <span class="mm-tag">Example — do not click</span>
+          <p style="margin:0;">Dear User, your <span class="flag">KYC will expire today</span>. Update immediately: <span class="flag">bit.ly/kyc-updt3</span> to avoid account block. — Bank Team</p>
+        </div>
+      </div>
+
+      <div class="phish-type reveal" id="vishing">
+        <div>
+          <span class="icon-badge"><i class="fa-solid fa-phone"></i></span>
+          <h3>Voice Phishing (Vishing)</h3>
+          <p>A phone call from someone claiming to be a bank officer, police official, or government representative, built to sound convincing in real time.</p>
+          <ul class="tell-signs">
+            <li><i class="fa-solid fa-flag"></i> Caller already knows some of your details, which feels reassuring but is often gathered elsewhere.</li>
+            <li><i class="fa-solid fa-flag"></i> Requests to install a "verification" or remote-access app during the call.</li>
+            <li><i class="fa-solid fa-flag"></i> Threats — blocked SIM, frozen account, an "arrest warrant" — designed to stop you thinking clearly.</li>
+          </ul>
+        </div>
+        <div class="mock-message glass">
+          <span class="mm-tag">Example call script</span>
+          <p style="margin:0;">"This is <span class="flag">[Bank Name] Security Department</span>. Your card was used in Mumbai just now. To block this transaction, please <span class="flag">confirm the OTP</span> sent to your phone."</p>
+        </div>
+      </div>
+
+      <div class="phish-type reveal" id="fake-login">
+        <div>
+          <span class="icon-badge"><i class="fa-solid fa-right-to-bracket"></i></span>
+          <h3>Fake Login Pages</h3>
+          <p>Near-identical copies of a bank or email login page, hosted on a look-alike domain, built purely to capture your username and password.</p>
+          <ul class="tell-signs">
+            <li><i class="fa-solid fa-flag"></i> The web address doesn't exactly match the real domain (extra words, hyphens, or a different extension like .info).</li>
+            <li><i class="fa-solid fa-flag"></i> No padlock/HTTPS, or a certificate warning in the browser.</li>
+            <li><i class="fa-solid fa-flag"></i> The page asks for extra fields a real login never asks for together, like PIN + OTP + CVV at once.</li>
+          </ul>
+        </div>
+        <div class="mock-message glass">
+          <span class="mm-tag">Example address</span>
+          <p style="margin:0;">Real: <span style="color:var(--green-500)">www.onlinesbi.sbi</span><br/>Fake: <span class="flag">www.online-sbi-login.info/verify</span></p>
+        </div>
+      </div>
+
+      <div class="phish-type reveal" id="suspicious-links">
+        <div>
+          <span class="icon-badge"><i class="fa-solid fa-link"></i></span>
+          <h3>Suspicious Links</h3>
+          <p>The link itself is often the biggest clue, no matter which channel it arrives through.</p>
+          <ul class="tell-signs">
+            <li><i class="fa-solid fa-flag"></i> Shortened links (bit.ly, tinyurl) that hide the true destination.</li>
+            <li><i class="fa-solid fa-flag"></i> Misspelled brand names or extra characters (amaz0n, faceb00k-login).</li>
+            <li><i class="fa-solid fa-flag"></i> Unusual domain endings for a well-known brand (.xyz, .top, .info).</li>
+          </ul>
+        </div>
+        <div class="mock-message glass">
+          <span class="mm-tag">How to check</span>
+          <p style="margin:0;">On desktop, hover over a link to preview the real URL in the status bar. On mobile, long-press the link to see a preview before opening it. When in doubt, type the site's known address directly into your browser instead.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="cta-band reveal">
+        <h2>Passwords are the next layer of defence.</h2>
+        <p>Even if a phishing attempt slips through, a strong, unique password and 2FA can stop it from turning into a takeover.</p>
+        <a href="password-safety.html" class="btn btn-primary">Password Safety Guide <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand">
+          <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+          Cyber<span class="accent">Safe</span>&nbsp;India
+        </a>
+        <p>A public awareness resource helping people across India recognise online scams and build safer digital habits.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Follow on X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Follow on Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Follow on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Follow on YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="scams.html">Latest Scams</a></li>
+          <li><a href="phishing.html">Phishing</a></li>
+          <li><a href="password-safety.html">Password Safety</a></li>
+          <li><a href="upi-safety.html">Safe UPI Practices</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="reporting.html">Report Cyber Crime</a></li>
+          <li><a href="security-tips.html">Security Tips</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency</h4>
+        <ul>
+          <li><a href="reporting.html#helpline">Cyber Crime Helpline: 1930</a></li>
+          <li><a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a></li>
+          <li><a href="reporting.html#immediate-steps">What to do after fraud</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-newsletter glass reveal">
+      <div class="footer-newsletter-copy">
+        <h4 style="margin-bottom:6px;">Stay ahead of new scams</h4>
+        <p style="margin-bottom:0;">A short monthly email on the latest scam patterns — no spam.</p>
+      </div>
+      <form id="newsletter-form" class="newsletter-form" novalidate>
+        <input type="email" id="newsletter-email" placeholder="you@example.com" required aria-label="Email address" />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+    <p id="newsletter-msg" class="newsletter-msg" role="status"></p>
+
+    <div class="footer-bottom">
+      <span>© 2026 CyberSafe India. Educational content — not a government agency.</span>
+      <span>Built for public awareness. Stay alert, stay safe.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../js/api.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/dynamic-content.js"></script>
+</body>
+</html>

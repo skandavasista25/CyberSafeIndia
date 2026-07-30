@@ -1,0 +1,16 @@
+{
+  "name": "cybersafe-india",
+  "version": "1.0.0",
+  "description": "CyberSafe India — full-stack cyber awareness platform (static frontend + Node/Express/MongoDB backend)",
+  "private": true,
+  "scripts": {
+    "install:server": "cd server && npm install",
+    "dev:server": "cd server && npm run dev",
+    "start:server": "cd server && npm start",
+    "seed:admin": "cd server && npm run seed:admin",
+    "seed:content": "cd server && npm run seed:content"
+  },
+  "dependencies": {
+    "firebase": "^12.16.0"
+  }
+}

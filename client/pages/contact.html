@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact Us — CyberSafe India</title>
+<meta name="description" content="Get in touch with CyberSafe India — share feedback, report a scam we should cover, or ask a question." />
+<link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+      Cyber<span class="accent">Safe</span>&nbsp;India
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html">Home</a>
+      <a href="scams.html">Latest Scams</a>
+      <a href="phishing.html">Phishing</a>
+      <a href="password-safety.html">Password Safety</a>
+      <a href="upi-safety.html">Safe UPI</a>
+      <a href="reporting.html">Report Cyber Crime</a>
+      <a href="security-tips.html">Security Tips</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="login.html">Login</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="search-wrap">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" class="search-input" placeholder="Search topics…" aria-label="Search cyber safety topics" />
+        </div>
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / Contact Us</p>
+      <p class="eyebrow">We'd like to hear from you</p>
+      <h1>Contact Us</h1>
+      <p>Questions, feedback, or a scam you think we should cover — send it over.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div>
+          <div class="glass contact-info-card reveal">
+            <span class="icon-badge"><i class="fa-solid fa-envelope"></i></span>
+            <h4>Email</h4>
+            <p style="margin:0;">hello@cybersafeindia.example</p>
+          </div>
+          <div class="glass contact-info-card reveal">
+            <span class="icon-badge"><i class="fa-solid fa-phone-volume"></i></span>
+            <h4>Cyber Crime Emergencies</h4>
+            <p style="margin:0;">For active fraud, call the national helpline directly at <strong>1930</strong> — this contact form is for general feedback only, not emergency reporting.</p>
+          </div>
+          <div class="glass contact-info-card reveal">
+            <span class="icon-badge"><i class="fa-solid fa-comments"></i></span>
+            <h4>Suggest a topic</h4>
+            <p style="margin:0;">Come across a new scam pattern? Let us know and we'll consider adding a guide for it.</p>
+          </div>
+        </div>
+
+        <div class="glass form-card reveal">
+          <div class="form-success" id="form-success">
+            <i class="fa-solid fa-circle-check"></i> Thanks — your message has been sent. We'll get back to you soon.
+          </div>
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="topic">Reason for contact</label>
+              <select id="topic" name="topic" required>
+                <option value="" disabled selected>Select one</option>
+                <option>General feedback</option>
+                <option>Suggest a scam/topic to cover</option>
+                <option>Report a website issue</option>
+                <option>Partnership / media enquiry</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder="Tell us what's on your mind…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+            <p class="form-note">This form is for feedback only. For active fraud, call <strong>1930</strong> or visit <a href="https://cybercrime.gov.in" target="_blank" rel="noopener" style="color:var(--cyan-400);">cybercrime.gov.in</a> instead.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand">
+          <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+          Cyber<span class="accent">Safe</span>&nbsp;India
+        </a>
+        <p>A public awareness resource helping people across India recognise online scams and build safer digital habits.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Follow on X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Follow on Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Follow on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Follow on YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="scams.html">Latest Scams</a></li>
+          <li><a href="phishing.html">Phishing</a></li>
+          <li><a href="password-safety.html">Password Safety</a></li>
+          <li><a href="upi-safety.html">Safe UPI Practices</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="reporting.html">Report Cyber Crime</a></li>
+          <li><a href="security-tips.html">Security Tips</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency</h4>
+        <ul>
+          <li><a href="reporting.html#helpline">Cyber Crime Helpline: 1930</a></li>
+          <li><a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a></li>
+          <li><a href="reporting.html#immediate-steps">What to do after fraud</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-newsletter glass reveal">
+      <div class="footer-newsletter-copy">
+        <h4 style="margin-bottom:6px;">Stay ahead of new scams</h4>
+        <p style="margin-bottom:0;">A short monthly email on the latest scam patterns — no spam.</p>
+      </div>
+      <form id="newsletter-form" class="newsletter-form" novalidate>
+        <input type="email" id="newsletter-email" placeholder="you@example.com" required aria-label="Email address" />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+    <p id="newsletter-msg" class="newsletter-msg" role="status"></p>
+
+    <div class="footer-bottom">
+      <span>© 2026 CyberSafe India. Educational content — not a government agency.</span>
+      <span>Built for public awareness. Stay alert, stay safe.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../js/api.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/dynamic-content.js"></script>
+</body>
+</html>

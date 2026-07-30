@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard — CyberSafe India</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<div class="admin-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="admin-sidebar">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+      Cyber<span class="accent">Safe</span>
+    </a>
+    <nav class="admin-nav">
+      <a href="#" data-target="overview" class="active"><i class="fa-solid fa-gauge-high"></i> Overview</a>
+      <a href="#" data-target="scams"><i class="fa-solid fa-triangle-exclamation"></i> Scam Articles</a>
+      <a href="#" data-target="faqs"><i class="fa-solid fa-circle-question"></i> FAQs</a>
+      <a href="#" data-target="tips"><i class="fa-solid fa-lock"></i> Security Tips</a>
+      <a href="#" data-target="quiz"><i class="fa-solid fa-graduation-cap"></i> Quiz Questions</a>
+      <a href="#" data-target="feedback"><i class="fa-solid fa-envelope-open-text"></i> Feedback</a>
+      <a href="#" data-target="newsletter"><i class="fa-solid fa-paper-plane"></i> Subscribers</a>
+      <a href="#" id="admin-logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+    </nav>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="admin-main">
+
+    <div class="admin-topbar">
+      <h1 id="panel-title">Overview</h1>
+      <span class="chip" id="admin-whoami">Admin</span>
+    </div>
+
+    <!-- ---------- OVERVIEW ---------- -->
+    <section class="admin-panel-view" data-panel="overview">
+      <div class="admin-stats-grid" id="overview-stats">
+        <div class="glass admin-stat"><span class="num">—</span><span class="label">Total Scam Articles</span></div>
+        <div class="glass admin-stat"><span class="num">—</span><span class="label">Total FAQs</span></div>
+        <div class="glass admin-stat"><span class="num">—</span><span class="label">Total Feedback</span></div>
+        <div class="glass admin-stat"><span class="num">—</span><span class="label">Newsletter Subscribers</span></div>
+        <div class="glass admin-stat"><span class="num">—</span><span class="label">Registered Users</span></div>
+        <div class="glass admin-stat"><span class="num">—</span><span class="label">Quiz Questions</span></div>
+        <div class="glass admin-stat"><span class="num">—</span><span class="label">Quizzes Completed</span></div>
+        <div class="glass admin-stat"><span class="num">—</span><span class="label">Most Viewed Scam</span></div>
+      </div>
+      <div class="glass admin-panel">
+        <div class="admin-panel-head"><h3>Recent Feedback</h3></div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="overview-recent-table">
+            <thead><tr><th>Name</th><th>Subject</th><th>Received</th></tr></thead>
+            <tbody><tr><td colspan="3" class="admin-empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- SCAMS ---------- -->
+    <section class="admin-panel-view" data-panel="scams" style="display:none;">
+      <div class="glass admin-panel">
+        <div class="admin-panel-head">
+          <h3>Scam Articles</h3>
+          <button class="btn btn-primary" id="add-scam-btn"><i class="fa-solid fa-plus"></i> Add Article</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="scams-table">
+            <thead><tr><th>Title</th><th>Category</th><th>Views</th><th>Updated</th><th>Actions</th></tr></thead>
+            <tbody><tr><td colspan="5" class="admin-empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- FAQS ---------- -->
+    <section class="admin-panel-view" data-panel="faqs" style="display:none;">
+      <div class="glass admin-panel">
+        <div class="admin-panel-head">
+          <h3>FAQs</h3>
+          <button class="btn btn-primary" id="add-faq-btn"><i class="fa-solid fa-plus"></i> Add FAQ</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="faqs-table">
+            <thead><tr><th>Question</th><th>Category</th><th>Actions</th></tr></thead>
+            <tbody><tr><td colspan="3" class="admin-empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- SECURITY TIPS ---------- -->
+    <section class="admin-panel-view" data-panel="tips" style="display:none;">
+      <div class="glass admin-panel">
+        <div class="admin-panel-head">
+          <h3>Security Tips</h3>
+          <button class="btn btn-primary" id="add-tip-btn"><i class="fa-solid fa-plus"></i> Add Tip</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="tips-table">
+            <thead><tr><th>Title</th><th>Category</th><th>Actions</th></tr></thead>
+            <tbody><tr><td colspan="3" class="admin-empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- QUIZ ---------- -->
+    <section class="admin-panel-view" data-panel="quiz" style="display:none;">
+      <div class="glass admin-panel">
+        <div class="admin-panel-head">
+          <h3>Quiz Questions</h3>
+          <button class="btn btn-primary" id="add-quiz-btn"><i class="fa-solid fa-plus"></i> Add Question</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="quiz-table">
+            <thead><tr><th>Question</th><th>Difficulty</th><th>Category</th><th>Actions</th></tr></thead>
+            <tbody><tr><td colspan="4" class="admin-empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- FEEDBACK ---------- -->
+    <section class="admin-panel-view" data-panel="feedback" style="display:none;">
+      <div class="glass admin-panel">
+        <div class="admin-panel-head"><h3>Feedback Messages</h3></div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="feedback-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Received</th><th>Actions</th></tr></thead>
+            <tbody><tr><td colspan="6" class="admin-empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- NEWSLETTER ---------- -->
+    <section class="admin-panel-view" data-panel="newsletter" style="display:none;">
+      <div class="glass admin-panel">
+        <div class="admin-panel-head"><h3>Newsletter Subscribers</h3></div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="newsletter-table">
+            <thead><tr><th>Email</th><th>Subscribed</th><th>Actions</th></tr></thead>
+            <tbody><tr><td colspan="3" class="admin-empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============ MODAL (shared, content injected by admin.js) ============ -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="glass modal-box" id="modal-box"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/api.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

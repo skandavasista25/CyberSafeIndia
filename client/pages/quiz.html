@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cyber Awareness Quiz — CyberSafe India</title>
+<meta name="description" content="Test your cyber safety knowledge with the CyberSafe India quiz covering scams, phishing, passwords, and UPI safety." />
+<link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+      Cyber<span class="accent">Safe</span>&nbsp;India
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html">Home</a>
+      <a href="scams.html">Latest Scams</a>
+      <a href="phishing.html">Phishing</a>
+      <a href="password-safety.html">Password Safety</a>
+      <a href="upi-safety.html">Safe UPI</a>
+      <a href="reporting.html">Report Cyber Crime</a>
+      <a href="security-tips.html">Security Tips</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="quiz.html" class="active">Quiz</a>
+      <a href="login.html">Login</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="search-wrap">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" class="search-input" placeholder="Search topics…" aria-label="Search cyber safety topics" />
+        </div>
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / Cyber Awareness Quiz</p>
+      <p class="eyebrow">Test yourself</p>
+      <h1>Cyber Awareness Quiz</h1>
+      <p>A quick set of questions covering scams, phishing, passwords, and UPI safety. Log in first if you'd like your score saved to your learning history.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container quiz-shell">
+
+      <div id="quiz-start" class="glass quiz-card reveal">
+        <p class="eyebrow">Ready when you are</p>
+        <h3 style="margin-bottom:10px;">Start the quiz</h3>
+        <p style="font-size:0.92rem;">Ten questions, no time limit. Your score is calculated on the server so it can't be spoofed.</p>
+        <button id="quiz-start-btn" class="btn btn-primary" style="margin-top:10px;">Start Quiz <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+
+      <div id="quiz-loading" class="glass quiz-card reveal" style="display:none; text-align:center;">
+        <i class="fa-solid fa-circle-notch fa-spin" style="font-size:1.6rem; color:var(--cyan-400);"></i>
+        <p style="margin-top:14px;">Loading questions…</p>
+      </div>
+
+      <div id="quiz-error" class="glass quiz-card reveal" style="display:none; text-align:center;">
+        <i class="fa-solid fa-triangle-exclamation" style="font-size:1.6rem; color:var(--amber-500);"></i>
+        <p style="margin-top:14px;" id="quiz-error-msg">Couldn't load quiz questions. Please make sure the backend is running and questions have been added by an admin.</p>
+      </div>
+
+      <div id="quiz-play" style="display:none;">
+        <div class="quiz-progress"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
+        <div class="glass quiz-card reveal">
+          <div class="quiz-meta">
+            <span id="quiz-question-num">Question 1</span>
+            <span id="quiz-question-cat">General</span>
+          </div>
+          <h3 class="quiz-question" id="quiz-question-text">—</h3>
+          <div class="quiz-options" id="quiz-options"></div>
+          <button id="quiz-next-btn" class="btn btn-primary btn-block" disabled>Next <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div id="quiz-result" class="glass quiz-result reveal" style="display:none;">
+
+    <p class="eyebrow" style="justify-content:center;">
+        Quiz Complete
+    </p>
+
+    <span class="score-num" id="quiz-score">0/0</span>
+
+    <p id="quiz-result-msg" style="margin-top:10px;">
+        Nice work.
+    </p>
+
+    <!-- ========================= -->
+    <!-- Correct Answers Review -->
+    <!-- ========================= -->
+
+    
+
+    <!-- ========================= -->
+
+    <div style="display:flex;
+                gap:12px;
+                justify-content:center;
+                margin-top:25px;
+                flex-wrap:wrap;">
+
+        <button id="quiz-retry-btn" class="btn btn-ghost">
+            Try Again
+        </button>
+
+        
+
+        <a href="scams.html" class="btn btn-primary">
+            Review Scam Guides
+        </a>
+
+    </div>
+
+</div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand">
+          <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+          Cyber<span class="accent">Safe</span>&nbsp;India
+        </a>
+        <p>A public awareness resource helping people across India recognise online scams and build safer digital habits.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Follow on X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Follow on Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Follow on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Follow on YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="scams.html">Latest Scams</a></li>
+          <li><a href="phishing.html">Phishing</a></li>
+          <li><a href="password-safety.html">Password Safety</a></li>
+          <li><a href="upi-safety.html">Safe UPI Practices</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="reporting.html">Report Cyber Crime</a></li>
+          <li><a href="security-tips.html">Security Tips</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency</h4>
+        <ul>
+          <li><a href="reporting.html#helpline">Cyber Crime Helpline: 1930</a></li>
+          <li><a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a></li>
+          <li><a href="reporting.html#immediate-steps">What to do after fraud</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-newsletter glass reveal">
+      <div class="footer-newsletter-copy">
+        <h4 style="margin-bottom:6px;">Stay ahead of new scams</h4>
+        <p style="margin-bottom:0;">A short monthly email on the latest scam patterns — no spam.</p>
+      </div>
+      <form id="newsletter-form" class="newsletter-form" novalidate>
+        <input type="email" id="newsletter-email" placeholder="you@example.com" required aria-label="Email address" />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+    <p id="newsletter-msg" class="newsletter-msg" role="status"></p>
+
+    <div class="footer-bottom">
+      <span>© 2026 CyberSafe India. Educational content — not a government agency.</span>
+      <span>Built for public awareness. Stay alert, stay safe.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../js/api.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/dynamic-content.js"></script>
+<script type="module" src="../js/quiz.js"></script>
+</body>
+</html>

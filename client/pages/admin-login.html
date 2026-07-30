@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Login — CyberSafe India</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body style="min-height:100vh; display:flex; align-items:center; justify-content:center;">
+
+<div class="container" style="max-width:460px;">
+  <div class="glass auth-shell reveal in-view">
+    <div style="text-align:center; margin-bottom:24px;">
+      <a href="../index.html" class="brand" style="justify-content:center; display:flex;">
+        <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+        Cyber<span class="accent">Safe</span>&nbsp;India
+      </a>
+      <p class="eyebrow" style="justify-content:center; margin-top:14px;">Admin Panel</p>
+      <h1 style="font-size:1.5rem;">Admin Login</h1>
+    </div>
+
+    <div class="auth-error" id="admin-login-error"></div>
+    <form id="admin-login-form" novalidate>
+      <div class="form-group">
+        <label for="admin-username">Username</label>
+        <input type="text" id="admin-username" name="username" required autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="admin-password">Password</label>
+        <input type="password" id="admin-password" name="password" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log In <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+    </form>
+    <p class="auth-switch"><a href="../index.html">← Back to the website</a></p>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>
