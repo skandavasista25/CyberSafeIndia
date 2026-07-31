@@ -10,157 +10,509 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 <link rel="stylesheet" href="../css/style.css" />
-</head>
-<body>
-<a href="#main" class="skip-link">Skip to content</a>
 
-<header class="navbar">
-  <div class="container">
-    <a href="../index.html" class="brand">
+<style>
+  /* ===== Scoped styles for the login page only ===== */
+  :root{
+    --ls-navy: #0B1524;
+    --ls-navy-deep: #070D18;
+    --ls-panel: #101C30;
+    --ls-line: rgba(148,163,184,0.14);
+    --ls-teal: #2DD4BF;
+    --ls-teal-dim: rgba(45,212,191,0.14);
+    --ls-text: #E7ECF3;
+    --ls-muted: #93A1B7;
+    --ls-amber: #F5A524;
+    --ls-white: #FFFFFF;
+  }
+
+  html, body.login-page{
+    height: 100%;
+    margin: 0;
+    background: var(--ls-navy-deep);
+  }
+
+  body.login-page{
+    font-family: 'Inter', sans-serif;
+    color: var(--ls-text);
+  }
+
+  .login-shell{
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+  }
+
+  /* ---------- LEFT: About panel ---------- */
+  .login-about{
+    position: relative;
+    background:
+      radial-gradient(120% 140% at 0% 0%, rgba(45,212,191,0.10), transparent 55%),
+      var(--ls-navy);
+    padding: 56px 56px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    border-right: 1px solid var(--ls-line);
+  }
+
+  .login-about::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--ls-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ls-line) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(80% 65% at 20% 20%, black, transparent 75%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .login-brand{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    color: var(--ls-white);
+    text-decoration: none;
+  }
+  .login-brand .brand-mark{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: var(--ls-teal-dim);
+    color: var(--ls-teal);
+    font-size: 1rem;
+    border: 1px solid rgba(45,212,191,0.3);
+  }
+  .login-brand .accent{ color: var(--ls-teal); }
+
+  .login-scan{
+    position: relative;
+    margin: 44px 0 36px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .scan-badge{
+    position: relative;
+    width: 128px; height: 128px;
+    border-radius: 28px;
+    background: linear-gradient(160deg, var(--ls-panel), var(--ls-navy-deep));
+    border: 1px solid var(--ls-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    color: var(--ls-teal);
+    overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+  .scan-badge::after{
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ls-teal), transparent);
+    box-shadow: 0 0 16px 2px var(--ls-teal);
+    animation: scan-sweep 3.2s ease-in-out infinite;
+  }
+  @keyframes scan-sweep{
+    0%   { top: 8%; opacity: 0; }
+    10%  { opacity: 1; }
+    50%  { top: 92%; opacity: 1; }
+    60%  { opacity: 0; }
+    100% { top: 92%; opacity: 0; }
+  }
+
+  .login-copy{ margin-left: 30px; max-width: 340px; }
+  .login-eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ls-teal);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .login-copy h1{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    color: var(--ls-white);
+  }
+  .login-copy p{
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--ls-muted);
+    margin: 0;
+  }
+
+  .login-stats{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding-top: 26px;
+    border-top: 1px solid var(--ls-line);
+  }
+  .login-stats .stat i{ color: var(--ls-teal); margin-bottom: 8px; display: block; font-size: 1.05rem; }
+  .login-stats .stat strong{
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.86rem;
+    color: var(--ls-white);
+    margin-bottom: 2px;
+  }
+  .login-stats .stat span{ font-size: 0.76rem; color: var(--ls-muted); }
+
+  .login-helpline{
+    position: relative;
+    margin-top: 26px;
+    font-size: 0.78rem;
+    color: var(--ls-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .login-helpline i{ color: var(--ls-amber); }
+  .login-helpline strong{ color: var(--ls-text); font-weight: 600; }
+
+  /* ---------- RIGHT: Form panel ---------- */
+  .login-formside{
+    background: var(--ls-navy-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+  }
+
+  .login-card{
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .login-card .form-eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ls-muted);
+    margin: 0 0 8px;
+  }
+  .login-card h2{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    margin: 0 0 8px;
+    color: var(--ls-white);
+  }
+  .login-card > p.sub{
+    font-size: 0.88rem;
+    color: var(--ls-muted);
+    margin: 0 0 28px;
+  }
+
+  .login-error{
+    display: none;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.35);
+    color: #FCA5A5;
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+  }
+  .login-error.visible{ display: block; }
+
+  .ls-field{ margin-bottom: 18px; }
+  .ls-field label{
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ls-muted);
+    margin-bottom: 7px;
+  }
+  .ls-input-wrap{ position: relative; }
+  .ls-input-wrap i{
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--ls-muted);
+    font-size: 0.85rem;
+  }
+  .ls-field input{
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--ls-panel);
+    border: 1px solid var(--ls-line);
+    border-radius: 10px;
+    padding: 12px 14px 12px 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ls-text);
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .ls-field input::placeholder{ color: #5C6B82; }
+  .ls-field input:focus{
+    border-color: var(--ls-teal);
+    box-shadow: 0 0 0 3px rgba(45,212,191,0.15);
+  }
+
+  .ls-submit{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--ls-teal);
+    color: #06231F;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.1s ease;
+  }
+  .ls-submit:hover{ filter: brightness(1.08); }
+  .ls-submit:active{ transform: translateY(1px); }
+
+  .login-switch{
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ls-muted);
+    margin-top: 22px;
+  }
+  .login-switch a{ color: var(--ls-teal); font-weight: 600; text-decoration: none; }
+  .login-switch a:hover{ text-decoration: underline; }
+
+  .login-back{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--ls-muted);
+    text-decoration: none;
+    margin-bottom: 26px;
+  }
+  .login-back:hover{ color: var(--ls-teal); }
+
+  /* logged-in state */
+  .logged-in-card{
+    text-align: center;
+  }
+  .logged-in-card .icon-badge{
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--ls-teal-dim);
+    color: var(--ls-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 16px;
+  }
+  .logged-in-card h3{
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--ls-white);
+    margin: 0 0 8px;
+  }
+  .logged-in-card p{ color: var(--ls-muted); font-size: 0.88rem; margin: 0; }
+  .logged-in-card .actions{
+    display: flex; gap: 10px; justify-content: center;
+    flex-wrap: wrap; margin-top: 20px;
+  }
+  .btn-ghost-ls{
+    background: transparent;
+    border: 1px solid var(--ls-line);
+    color: var(--ls-text);
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.86rem;
+    cursor: pointer;
+  }
+  .btn-primary-ls{
+    background: var(--ls-teal);
+    color: #06231F;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.86rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  @media (max-width: 900px){
+    .login-shell{ grid-template-columns: 1fr; }
+    .login-about{
+      padding: 32px 28px;
+      border-right: none;
+      border-bottom: 1px solid var(--ls-line);
+    }
+    .login-scan{ margin: 24px 0; }
+    .scan-badge{ width: 84px; height: 84px; font-size: 1.9rem; border-radius: 20px; }
+    .login-copy{ margin-left: 20px; }
+    .login-copy h1{ font-size: 1.4rem; }
+    .login-stats{ grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .login-formside{ padding: 36px 24px 48px; }
+  }
+
+  @media (max-width: 480px){
+    .login-scan{ flex-direction: column; align-items: flex-start; }
+    .login-copy{ margin-left: 0; margin-top: 18px; max-width: 100%; }
+    .login-stats{ grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body class="login-page">
+
+<div class="login-shell">
+
+  <!-- LEFT: About CyberSafe India -->
+  <aside class="login-about">
+    <a href="../index.html" class="login-brand">
       <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
       Cyber<span class="accent">Safe</span>&nbsp;India
     </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="../index.html">Home</a>
-      <a href="scams.html">Latest Scams</a>
-      <a href="phishing.html">Phishing</a>
-      <a href="password-safety.html">Password Safety</a>
-      <a href="upi-safety.html">Safe UPI</a>
-      <a href="reporting.html">Report Cyber Crime</a>
-      <a href="security-tips.html">Security Tips</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-      <a href="quiz.html">Quiz</a>
-      <a href="login.html" class="active">Login</a>
-    </nav>
-    <div class="nav-actions">
-      <div class="search-wrap">
-        <div class="search-box">
-          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-          <input type="search" class="search-input" placeholder="Search topics…" aria-label="Search cyber safety topics" />
-        </div>
-        <div class="search-results" role="listbox"></div>
+
+    <div class="login-scan">
+      <div class="scan-badge">
+        <i class="fa-solid fa-lock" aria-hidden="true"></i>
       </div>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <i class="fa-solid fa-bars" aria-hidden="true"></i>
-      </button>
+      <div class="login-copy">
+        <span class="login-eyebrow">About CyberSafe India</span>
+        <h1>Helping India recognise scams before they cost you.</h1>
+        <p>A free public awareness resource with plain-language guides on phishing, UPI fraud, and password safety — plus a quiz to test what you know and clear steps for reporting cyber crime.</p>
+      </div>
     </div>
-  </div>
-</header>
 
-<main id="main">
-  <section class="page-hero">
-    <div class="container">
-      <p class="breadcrumb"><a href="../index.html">Home</a> / Login</p>
-      <p class="eyebrow">Welcome back</p>
-      <h1>Log In</h1>
-      <p>Access your saved quiz scores, bookmarked scam guides, and learning history.</p>
+    <div>
+      <div class="login-stats">
+        <div class="stat">
+          <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+          <strong>Scam Guides</strong>
+          <span>Updated regularly</span>
+        </div>
+        <div class="stat">
+          <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+          <strong>Safety Quiz</strong>
+          <span>Track your score</span>
+        </div>
+        <div class="stat">
+          <i class="fa-solid fa-flag" aria-hidden="true"></i>
+          <strong>Report Fraud</strong>
+          <span>Step-by-step help</span>
+        </div>
+      </div>
+      <p class="login-helpline">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        National Cyber Crime Helpline: <strong>1930</strong> · <strong>cybercrime.gov.in</strong>
+      </p>
     </div>
-  </section>
+  </aside>
 
-  <section class="section">
-    <div class="container">
-      <div class="glass auth-shell reveal" id="logged-out-view">
-        <div class="auth-error" id="login-error"></div>
+  <!-- RIGHT: Login form -->
+  <main class="login-formside" id="main">
+    <div class="login-card">
+
+      <a href="../index.html" class="login-back"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to home</a>
+
+      <div id="logged-out-view">
+        <p class="form-eyebrow">Welcome back</p>
+        <h2>Log in to your account</h2>
+        <p class="sub">Access your saved quiz scores and bookmarked guides.</p>
+
+        <div class="login-error" id="login-error"></div>
+
         <form id="login-form" novalidate>
-          <div class="form-group">
+          <div class="ls-field">
             <label for="login-email">Email address</label>
-            <input type="email" id="login-email" name="email" required autocomplete="email" />
+            <div class="ls-input-wrap">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              <input type="email" id="login-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+            </div>
           </div>
-          <div class="form-group">
+          <div class="ls-field">
             <label for="login-password">Password</label>
-            <input type="password" id="login-password" name="password" required autocomplete="current-password" />
+            <div class="ls-input-wrap">
+              <i class="fa-solid fa-key" aria-hidden="true"></i>
+              <input type="password" id="login-password" name="password" placeholder="••••••••" required autocomplete="current-password" />
+            </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Log In <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+          <button type="submit" class="ls-submit">Log In <i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></button>
         </form>
-        <p class="auth-switch">New here? <a href="register.html">Create an account</a></p>
+
+        <p class="login-switch">New here? <a href="register.html">Create an account</a></p>
       </div>
 
-      <div class="glass auth-shell reveal" id="logged-in-view" style="display:none; text-align:center;">
-        <span class="icon-badge" style="margin:0 auto 14px;"><i class="fa-solid fa-circle-check"></i></span>
+      <div id="logged-in-view" class="logged-in-card" style="display:none;">
+        <span class="icon-badge"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span>
         <h3 id="welcome-name">Welcome back</h3>
-        <p style="font-size:0.92rem;">You're logged in. Your quiz scores will now be saved automatically.</p>
-        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px;">
-          <a href="quiz.html" class="btn btn-primary">Take the Quiz</a>
-          <button id="logout-btn" class="btn btn-ghost">Log Out</button>
+        <p>You're logged in. Taking you to the homepage…</p>
+        <div class="actions">
+          <a href="../index.html" class="btn-primary-ls">Continue Now</a>
+          <button id="logout-btn" class="btn-ghost-ls">Log Out</button>
         </div>
       </div>
+
     </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="../index.html" class="brand">
-          <span class="brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
-          Cyber<span class="accent">Safe</span>&nbsp;India
-        </a>
-        <p>A public awareness resource helping people across India recognise online scams and build safer digital habits.</p>
-        <div class="social-row">
-          <div class="social-links">
-
-    <a href="https://x.com/cyberdost" target="_blank" rel="noopener noreferrer" aria-label="CyberDost on X">
-        <i class="fa-brands fa-x-twitter"></i>
-    </a>
-
-    <a href="https://www.instagram.com/cyberdosti4c/" target="_blank" rel="noopener noreferrer" aria-label="CyberDost on Instagram">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-
-    <a href="https://www.linkedin.com/company/indian-computer-emergency-response-team/" target="_blank" rel="noopener noreferrer" aria-label="CERT-In on LinkedIn">
-        <i class="fa-brands fa-linkedin-in"></i>
-    </a>
-
-    <a href="https://www.youtube.com/@MyGovIndia" target="_blank" rel="noopener noreferrer" aria-label="MyGov India on YouTube">
-        <i class="fa-brands fa-youtube"></i>
-    </a>
+  </main>
 
 </div>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Learn</h4>
-        <ul>
-          <li><a href="scams.html">Latest Scams</a></li>
-          <li><a href="phishing.html">Phishing</a></li>
-          <li><a href="password-safety.html">Password Safety</a></li>
-          <li><a href="upi-safety.html">Safe UPI Practices</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="reporting.html">Report Cyber Crime</a></li>
-          <li><a href="security-tips.html">Security Tips</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Emergency</h4>
-        <ul>
-          <li><a href="reporting.html#helpline">Cyber Crime Helpline: 1930</a></li>
-          <li><a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a></li>
-          <li><a href="reporting.html#immediate-steps">What to do after fraud</a></li>
-        </ul>
-      </div>
-    </div>
 
-    
-
-    <div class="footer-bottom">
-      <span>© 2026 CyberSafe India. Educational content — not a government agency.</span>
-      <span>Built for public awareness. Stay alert, stay safe.</span>
-    </div>
-  </div>
-</footer>
-
-<button id="back-to-top" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 <script src="../js/api.js"></script>
 <script src="../js/script.js"></script>
 <script type="module" src="../assets/js/dynamic-content.js"></script>
 <script type="module" src="../js/auth.js"></script>
+
+<script>
+  // Non-invasive redirect: watches the existing logged-in-view toggle
+  // (driven by auth.js) and redirects to index.html once it becomes visible.
+  // auth.js itself is untouched.
+  (function () {
+    var loggedInView = document.getElementById('logged-in-view');
+    if (!loggedInView) return;
+
+    var redirected = false;
+    function isVisible(el) {
+      return el.offsetParent !== null &&
+        window.getComputedStyle(el).display !== 'none';
+    }
+
+    function maybeRedirect() {
+      if (redirected) return;
+      if (isVisible(loggedInView)) {
+        redirected = true;
+        setTimeout(function () {
+          window.location.href = '../index.html';
+        }, 900); // brief pause so the "Welcome back" state is visible
+      }
+    }
+
+    // Check immediately in case the user is already logged in on page load.
+    maybeRedirect();
+
+    // Watch for auth.js toggling the view after a successful login.
+    var observer = new MutationObserver(maybeRedirect);
+    observer.observe(loggedInView, { attributes: true, attributeFilter: ['style', 'class'] });
+  })();
+</script>
+
 </body>
 </html>

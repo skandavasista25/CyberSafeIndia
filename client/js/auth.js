@@ -66,13 +66,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------------------------
   onAuthStateChanged(auth, (user) => {
 
-    if (user) {
-      showLoggedIn(user);
-    } else {
+  // If user is NOT logged in
+  if (!user) {
+
+    // Allow login page itself
+    if (
+      window.location.pathname.includes("login.html") ||
+      window.location.pathname.includes("register.html")
+    ) {
       showLoggedOut();
+      return;
     }
 
-  });
+    // Redirect every other page to login
+    window.location.replace("pages/login.html");
+    return;
+  }
+
+  // User is logged in
+  showLoggedIn(user);
+
+});
 
   // -------------------------
   // LOGIN
@@ -93,14 +107,26 @@ document.addEventListener("DOMContentLoaded", () => {
           loginForm.password.value
         );
 
-        alert("Login Successful!");
+        Swal.fire({
+    icon: "success",
+    title: "Login Successful!",
+    text: "Welcome back to CyberSafe India.",
+    timer: 1800,
+    showConfirmButton: false
+}).then(() => {
+    window.location.href = "../index.html";
+});
 
         // Redirect to Home Page
-        window.location.href = "../index.html";
+        window.location.href = "login.html";
 
       } catch (err) {
 
-        alert(err.message);
+        Swal.fire({
+    icon: "error",
+    title: "Login Failed",
+    text: err.message
+});
 
       }
 
@@ -145,7 +171,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
-        alert("Registration Successful!");
+        Swal.fire({
+    icon: "success",
+    title: "Registration Successful!",
+    text: "Your account has been created successfully.",
+    timer: 1800,
+    showConfirmButton: false
+}).then(() => {
+    window.location.href = "login.html";
+});
 
         // Go to login page
         window.location.href = "login.html";
@@ -165,18 +199,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------------------------
   const logoutBtn = document.getElementById("logout-btn");
 
-  if (logoutBtn) {
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
 
-    logoutBtn.addEventListener("click", async () => {
+        try {
+            await signOut(auth);
 
-      await signOut(auth);
+            Swal.fire({
+    icon: "success",
+    title: "Logged Out",
+    text: "You have been logged out successfully.",
+    timer: 1500,
+    showConfirmButton: false
+}).then(() => {
+    window.location.href = "login.html";
+});
 
-      alert("Logged Out Successfully!");
-
-      window.location.href = "../index.html";
-
+            window.location.replace("pages/login.html");
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
+        }
     });
-
-  }
+}
 
 });

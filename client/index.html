@@ -19,8 +19,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 <link rel="stylesheet" href="css/style.css" />
+<style>
+body{
+    display:none;
+}
+</style>
 </head>
 <body>
+  <script type="module">
+import { auth } from "./js/firebase.js";
+
+auth.onAuthStateChanged((user) => {
+
+    if (!user) {
+        window.location.replace("pages/login.html");
+        return;
+    }
+
+    // User is logged in
+    document.body.style.display = "block";
+});
+</script>
 <a href="#main" class="skip-link">Skip to content</a>
 
 <!-- ============ NAVBAR ============ -->
@@ -42,7 +61,10 @@
       <a href="pages/faq.html">FAQ</a>
       <a href="pages/contact.html">Contact</a>
       <a href="pages/quiz.html">Quiz</a>
-      <a href="pages/login.html">Login</a>
+      <a href="#" id="logout-btn">
+    <i class="fa-solid fa-right-from-bracket"></i> Logout
+</a>
+      
     </nav>
 
     <div class="nav-actions">
@@ -283,6 +305,9 @@
 
 <script src="js/api.js"></script>
 <script src="js/script.js"></script>
+<script type="module" src="js/auth-guard.js"></script>
+<script type="module" src="js/auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="module" src="../assets/js/dynamic-content.js"></script>
 </body>
 </html>
