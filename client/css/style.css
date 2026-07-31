@@ -1300,52 +1300,60 @@ button { font-family: inherit; cursor: pointer; }
 =============================*/
 
 #review{
-    margin-top:40px;
-    width:100%;
+    margin-top:35px;
+    text-align:left;
 }
 
 .review-card{
     background:rgba(255,255,255,.05);
     border:1px solid rgba(255,255,255,.08);
-    border-radius:20px;
-    padding:25px;
-    margin:25px 0;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
 }
 
-.review-question h3{
-    color:#fff;
-    margin:15px 0;
+.review-card.correct{
+    border-left:6px solid #22c55e;
 }
 
-.question-number{
-    display:inline-block;
-    background:#06b6d4;
+.review-card.wrong{
+    border-left:6px solid #ef4444;
+}
+
+.review-card h4{
     color:#fff;
-    padding:8px 18px;
-    border-radius:20px;
+    margin-bottom:15px;
+}
+
+.review-card p{
+    margin:8px 0;
+    color:#e2e8f0;
+}
+
+.correct-answer{
+    color:#22c55e;
     font-weight:700;
 }
 
-.review-answer{
-    margin-top:20px;
+.wrong-answer{
+    color:#ef4444;
+    font-weight:700;
+}
+.answer-label{
+    display:inline-block;
+    padding:6px 14px;
+    margin-bottom:8px;
+    border-radius:20px;
+    font-weight:700;
+    font-size:15px;
 }
 
-.correct-box{
-    background:#14532d;
-    color:#bbf7d0;
-    border-left:5px solid #22c55e;
-    padding:15px;
-    border-radius:10px;
+.your-label,
+.correct-label{
+    color:black;
+    font-size:17px;
+    font-weight:bold;
 }
-
-.wrong-box{
-    background:#7f1d1d;
-    color:#fecaca;
-    border-left:5px solid #ef4444;
-    padding:15px;
-    border-radius:10px;
-}
-
 /* ==========================================================================
    FULL RESPONSIVE OVERHAUL — additive, mobile-first fallbacks
    Covers large desktop → laptop → tablet → large phone → small phone.

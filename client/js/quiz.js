@@ -339,6 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
     retryBtn: document.getElementById("quiz-retry-btn"),
     scoreNum: document.getElementById("quiz-score"),
     resultMsg: document.getElementById("quiz-result-msg"),
+    review: document.getElementById("review"),
   };
 
   let questions = [];
@@ -442,7 +443,41 @@ if (user) {
             : pct >= 50
             ? "Good start. A quick read through the scam guides will sharpen this further."
             : "Worth another pass through the scam and phishing guides before you're done.";
-        show(els.result);
+        els.review.innerHTML = "";
+
+questions.forEach((question, index) => {
+
+    const userAnswer = answers[index].selected;
+    const correctAnswer = question.answer;
+
+    const isCorrect = userAnswer === correctAnswer;
+
+    els.review.innerHTML += `
+        <div class="review-card ${isCorrect ? "correct" : "wrong"}">
+
+            <h4>Question ${index + 1}</h4>
+
+            <p><strong>${question.question}</strong></p>
+
+            <p>
+    <span class="answer-label your-label">Your Answer</span><br>
+    <span class="${isCorrect ? "correct-answer" : "wrong-answer"}">
+        ${question.options[userAnswer]}
+    </span>
+</p>
+
+<p>
+    <span class="answer-label correct-label">Correct Answer</span><br>
+    <span class="correct-answer">
+        ${question.options[correctAnswer]}
+    </span>
+</p>
+
+        </div>
+    `;
+
+});
+            show(els.result);
         
       } catch (err) {
         els.errorMsg.textContent = err.message || "Couldn't submit your answers.";
