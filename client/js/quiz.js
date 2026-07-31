@@ -19,7 +19,8 @@ console.log("Current page:", window.location.pathname);
 console.log(document.body.innerHTML.includes('id="review"'));
 import {
     collection,
-    addDoc
+    addDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const QUIZ_QUESTIONS = [
   {
@@ -429,7 +430,7 @@ if (user) {
     score: data.score,
     total: data.total,
     percentage: Math.round((data.score / data.total) * 100),
-    date: new Date().toLocaleString(),
+    date: serverTimestamp(),
 
     answers,
     questions

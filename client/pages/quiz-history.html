@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz History | CyberSafe India</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <header class="navbar">
+
+        <div class="container">
+
+            <a href="dashboard.html" class="brand">
+                <span class="brand-mark">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </span>
+                CyberSafe India
+            </a>
+
+            <nav class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="quiz-history.html" class="active">Quiz History</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <!-- Hero -->
+
+    <section class="page-hero">
+
+        <div class="container">
+
+            <p class="eyebrow">
+                Your Progress
+            </p>
+
+            <h1>
+                Last 5 Quiz Attempts
+            </h1>
+
+            <p>
+                Review your previous quiz scores and monitor your cybersecurity knowledge.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- History -->
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="history-card">
+
+                <div class="history-header">
+
+                    <h2>
+                        Quiz History
+                    </h2>
+
+                    <p>
+                        Only your latest five quiz attempts are shown.
+                    </p>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="history-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Date</th>
+
+                                <th>Score</th>
+
+                                <th>Percentage</th>
+
+                                <th>Status</th>
+
+                                <th>Review</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="history-body">
+
+                            <tr>
+
+                                <td colspan="5">
+
+                                    Loading...
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Answer Review Modal -->
+
+    <div id="review-modal" class="modal-overlay">
+
+        <div class="modal-box glass">
+
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+
+                <h2>Answer Review</h2>
+
+                <button id="close-modal" class="btn">
+                    ✖
+                </button>
+
+            </div>
+
+            <hr>
+
+            <div id="review-content">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="../js/quiz-history.js"></script>
+
+</body>
+
+</html>
