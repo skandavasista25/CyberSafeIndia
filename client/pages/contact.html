@@ -108,7 +108,7 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" required placeholder="Tell us what's on your mind…"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+            <button type="submit" class="btn btn-primary btn-block" id="contact-submit-btn">Send Message <i class="fa-solid fa-paper-plane"></i></button>
             <p class="form-note">This form is for feedback only. For active fraud, call <strong>1930</strong> or visit <a href="https://cybercrime.gov.in" target="_blank" rel="noopener" style="color:var(--cyan-400);">cybercrime.gov.in</a> instead.</p>
           </form>
         </div>
@@ -204,12 +204,75 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <script type="module">
-import { auth } from "../js/firebase.js";
+import { auth, db } from "../js/firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+let currentUser = null;
 
 onAuthStateChanged(auth, (user) => {
     if (!user) {
         window.location.replace("login.html");
+        return;
+    }
+    currentUser = user;
+});
+
+const form = document.getElementById("contact-form");
+const submitBtn = document.getElementById("contact-submit-btn");
+const successBox = document.getElementById("form-success");
+const originalBtnHTML = submitBtn.innerHTML;
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const topic = document.getElementById("topic").value;
+    const message = document.getElementById("message").value.trim();
+
+    successBox.classList.remove("show");
+    successBox.style.background = "";
+    successBox.style.borderColor = "";
+    successBox.style.color = "";
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "Sending… <i class=\"fa-solid fa-spinner fa-spin\"></i>";
+
+    try {
+        await addDoc(collection(db, "feedback"), {
+            name,
+            email,
+            topic,
+            message,
+            userId: currentUser ? currentUser.uid : null,
+            createdAt: serverTimestamp()
+        });
+
+        form.reset();
+        successBox.innerHTML = '<i class="fa-solid fa-circle-check"></i> Thanks — your message has been sent. We\'ll get back to you soon.';
+        successBox.classList.add("show");
+    } catch (err) {
+        console.error("Error saving feedback:", err);
+        successBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Something went wrong sending your message. Please try again.';
+        successBox.style.background = "rgba(255,92,92,0.12)";
+        successBox.style.borderColor = "rgba(255,92,92,0.4)";
+        successBox.style.color = "var(--red-500)";
+        successBox.classList.add("show");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+        successBox.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => successBox.classList.remove("show"), 7000);
     }
 });
 </script>

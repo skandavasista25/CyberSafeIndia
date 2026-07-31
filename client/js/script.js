@@ -1,7 +1,13 @@
 /* ==========================================================================
    CyberSafe India — script.js
    Handles: mobile nav, site search, scroll reveal, accordions,
-   password strength demo, contact form, back-to-top.
+   password strength demo, back-to-top.
+
+   NOTE: Contact form submission is now handled directly in contact.html
+   via Firestore (see the inline module script there). The old
+   initContactForm()/CSIApi.submitFeedback() flow has been removed to
+   avoid double-submitting and to stop depending on the retired
+   Express/MongoDB backend for this feature.
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initAccordions("[data-accordion='scam']", ".scam-card", ".scam-card-head");
   initAccordions("[data-accordion='faq']", ".faq-item", ".faq-q");
   initPasswordDemo();
-  initContactForm();
   initBackToTop();
 });
 
@@ -134,22 +139,10 @@ function prefixUrl(url) {
 }
 
 async function runSearch(q, resultsBox) {
-  // Try the live backend search first (covers admin-added scams/FAQs/tips)
-  if (typeof CSIApi !== "undefined") {
-    try {
-      const { data } = await CSIApi.search(q);
-      const combined = [
-        ...(data.scams || []).map((s) => ({ title: s.title, cat: "Latest Scams", url: prefixUrl(`scams.html#scam-${s._id}`) })),
-        ...(data.faqs || []).map((f) => ({ title: f.question, cat: "FAQ", url: prefixUrl(`faq.html#faq-${f._id}`) })),
-        ...(data.securityTips || []).map((t) => ({ title: t.title, cat: "Security Tips", url: prefixUrl(`security-tips.html#tip-${t._id}`) })),
-      ];
-      renderSearchResults(combined, resultsBox);
-      return;
-    } catch (err) {
-      // fall through to local index below
-    }
-  }
-
+  // Local index only for now — the previous "live backend search" branch
+  // called the retired Express/MongoDB API and has been removed since
+  // that backend is no longer running. Re-add a Firestore-backed branch
+  // here once scams/FAQs/tips live in Firestore.
   const ql = q.toLowerCase();
   const matches = SEARCH_INDEX.filter(
     (item) => item.title.toLowerCase().includes(ql) || item.keywords.toLowerCase().includes(ql) || item.cat.toLowerCase().includes(ql)
@@ -279,60 +272,6 @@ function initPasswordDemo() {
         : '<i class="fa-solid fa-eye" aria-hidden="true"></i>';
     });
   }
-}
-
-/* ---------------------------------------------------------------
-   Contact / feedback form — submits to the CyberSafe India API
-   --------------------------------------------------------------- */
-function initContactForm() {
-  const form = document.getElementById("contact-form");
-  if (!form) return;
-  const success = document.getElementById("form-success");
-  const submitBtn = form.querySelector("button[type='submit']");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    const payload = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      subject: form.topic.value,
-      message: form.message.value.trim(),
-    };
-
-    success.classList.remove("show");
-    success.style.background = "";
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.dataset.originalText = submitBtn.dataset.originalText || submitBtn.innerHTML;
-      submitBtn.innerHTML = 'Sending… <i class="fa-solid fa-spinner fa-spin"></i>';
-    }
-
-    try {
-      if (typeof CSIApi === "undefined") throw new Error("Backend not connected");
-      const res = await CSIApi.submitFeedback(payload);
-      success.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${res.message || "Thanks — your message has been sent. We'll get back to you soon."}`;
-      success.classList.add("show");
-      form.reset();
-    } catch (err) {
-      success.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${err.message || "Something went wrong. Please try again."}`;
-      success.style.background = "rgba(255,92,92,0.12)";
-      success.style.borderColor = "rgba(255,92,92,0.4)";
-      success.style.color = "var(--red-500)";
-      success.classList.add("show");
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = submitBtn.dataset.originalText;
-      }
-      success.scrollIntoView({ behavior: "smooth", block: "center" });
-      setTimeout(() => success.classList.remove("show"), 7000);
-    }
-  });
 }
 
 /* ---------------------------------------------------------------
