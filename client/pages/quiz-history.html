@@ -11,9 +11,349 @@
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           Quiz History — page redesign (inline, scoped to .history-page)
+           Uses the site's existing design tokens from style.css so colors match
+           exactly. Only selectors prefixed with .history-page are affected —
+           other pages that reuse .badge / .btn / .history-card are untouched.
+           ========================================================================== */
+
+        .history-page {
+            position: relative;
+        }
+
+        /* subtle circuit-grid texture behind the page, echoing the
+           cyber-security register already set by .ticker / .radar */
+        .history-page::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.05;
+            background-image:
+                linear-gradient(rgba(170, 180, 204, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(170, 180, 204, 0.5) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: radial-gradient(ellipse 80% 55% at 50% 15%, black 0%, transparent 75%);
+        }
+
+        .history-page .navbar,
+        .history-page .page-hero,
+        .history-page .section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ---------- Hero: faint history-glyph watermark ---------- */
+
+        .history-page .page-hero {
+            overflow: hidden;
+        }
+
+        .history-page .page-hero::after {
+            content: "\f1da"; /* fa-clock-rotate-left */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 230px;
+            color: var(--cyan-400);
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        /* ---------- Card ---------- */
+
+        .history-page .history-card {
+            background: linear-gradient(180deg, var(--navy-800), var(--navy-850));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 24px 60px -24px rgba(0, 0, 0, 0.65),
+                0 0 0 1px rgba(34, 211, 238, 0.06) inset;
+            animation: history-rise 0.5s ease both;
+        }
+
+        @keyframes history-rise {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .history-page .history-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .history-page .history-header h2::before {
+            content: "\f1da";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 0.8em;
+            color: var(--cyan-400);
+        }
+
+        /* ---------- Table ---------- */
+
+        .history-page .table-responsive {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .history-page .history-table thead tr {
+            background: linear-gradient(180deg, rgba(46, 111, 242, 0.16), rgba(46, 111, 242, 0.03));
+        }
+
+        .history-page .history-table th {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--cyan-400);
+            text-align: left;
+        }
+
+        .history-page .history-table td {
+            text-align: left;
+        }
+
+        .history-page .history-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        .history-page .history-table tbody tr:hover {
+            background: rgba(34, 211, 238, 0.06);
+        }
+
+        /* Timeline rail — the date column doubles as a real chronological
+           spine, since attempts are already queried most-recent-first. */
+        .history-page .history-table td:first-child {
+            position: relative;
+            padding-left: 2.2rem;
+            border-left: 2px solid rgba(34, 211, 238, 0.3);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--slate-300);
+        }
+
+        .history-page .history-table td:first-child::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--cyan-400);
+            box-shadow:
+                0 0 0 4px rgba(34, 211, 238, 0.15),
+                0 0 12px rgba(34, 211, 238, 0.6);
+        }
+
+        .history-page .history-table td:nth-child(2) {
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        /* ---------- Badges: icon + traffic-light semantics ---------- */
+
+        .history-page .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .history-page .badge::before {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 0.85em;
+        }
+
+        .history-page .badge.excellent {
+            background: rgba(46, 230, 166, 0.16);
+            color: var(--green-500);
+            box-shadow: 0 0 0 1px rgba(46, 230, 166, 0.3) inset;
+        }
+        .history-page .badge.excellent::before { content: "\f00c"; }
+
+        .history-page .badge.good {
+            background: rgba(255, 176, 32, 0.16);
+            color: var(--amber-500);
+            box-shadow: 0 0 0 1px rgba(255, 176, 32, 0.3) inset;
+        }
+        .history-page .badge.good::before { content: "\f005"; }
+
+        .history-page .badge.poor {
+            background: rgba(255, 92, 92, 0.16);
+            color: var(--red-500);
+            box-shadow: 0 0 0 1px rgba(255, 92, 92, 0.3) inset;
+        }
+        .history-page .badge.poor::before { content: "\f06a"; }
+
+        /* ---------- View button ---------- */
+
+        .history-page .view-btn {
+            background: linear-gradient(135deg, var(--blue-600), var(--cyan-400));
+            color: #04121f;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px -8px rgba(46, 111, 242, 0.55);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .history-page .view-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 26px -8px rgba(34, 211, 238, 0.5);
+        }
+
+        /* ---------- Modal / Answer Review ---------- */
+
+        .history-page .modal-box.glass {
+            background: linear-gradient(180deg, var(--navy-800), var(--navy-850));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.75);
+        }
+
+        .history-page #close-modal {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: var(--white);
+            border-radius: 8px;
+        }
+        .history-page #close-modal:hover {
+            border-color: var(--cyan-400);
+        }
+
+        .history-page .review-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left-width: 3px;
+        }
+
+        .history-page .review-card h3 {
+            color: var(--cyan-400);
+            font-size: 0.95rem;
+        }
+
+        .history-page .review-card.correct { border-left-color: var(--green-500); }
+        .history-page .review-card.wrong { border-left-color: var(--red-500); }
+
+        .history-page .your-label,
+        .history-page .correct-label {
+            color: var(--slate-400);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .history-page .correct-answer { color: var(--green-500); }
+        .history-page .wrong-answer {
+            color: var(--red-500);
+            text-decoration: line-through;
+            text-decoration-color: rgba(255, 92, 92, 0.5);
+        }
+
+        /* ---------- Rewind Home button (signature back-navigation) ---------- */
+
+        .rewind-home {
+            position: fixed;
+            left: 24px;
+            bottom: 26px;
+            z-index: 200;
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            height: 52px;
+            padding: 0 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--navy-800), var(--navy-850));
+            border: 1px solid rgba(34, 211, 238, 0.35);
+            box-shadow:
+                0 10px 30px -10px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(34, 211, 238, 0.08) inset;
+            overflow: hidden;
+            transition: width 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            width: 52px;
+        }
+
+        .rewind-home-icon {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            color: var(--cyan-400);
+            font-size: 1.15rem;
+            transition: transform 0.5s ease;
+        }
+
+        .rewind-home-label {
+            white-space: nowrap;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--white);
+            opacity: 0;
+            max-width: 0;
+            overflow: hidden;
+            transition: opacity 0.25s ease 0.05s, max-width 0.3s ease;
+            padding-right: 0;
+        }
+
+        .rewind-home:hover,
+        .rewind-home:focus-visible {
+            width: 178px;
+            border-color: var(--cyan-400);
+            box-shadow:
+                0 14px 34px -10px rgba(0, 0, 0, 0.65),
+                0 0 20px rgba(34, 211, 238, 0.25);
+        }
+
+        .rewind-home:hover .rewind-home-icon,
+        .rewind-home:focus-visible .rewind-home-icon {
+            transform: rotate(-360deg);
+        }
+
+        .rewind-home:hover .rewind-home-label,
+        .rewind-home:focus-visible .rewind-home-label {
+            opacity: 1;
+            max-width: 130px;
+            padding-right: 18px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .rewind-home,
+            .rewind-home-icon,
+            .rewind-home-label {
+                transition: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .rewind-home {
+                left: 16px;
+                bottom: 18px;
+            }
+        }
+
+        /* ---------- Responsive ---------- */
+
+        @media (max-width: 640px) {
+            .history-page .page-hero::after {
+                font-size: 150px;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="history-page">
 
     <!-- Navbar -->
 
@@ -21,7 +361,7 @@
 
         <div class="container">
 
-            <a href="dashboard.html" class="brand">
+            <a href="../index.html" class="brand">
                 <span class="brand-mark">
                     <i class="fa-solid fa-shield-halved"></i>
                 </span>
@@ -29,7 +369,6 @@
             </a>
 
             <nav class="nav-links">
-                <a href="dashboard.html">Dashboard</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="quiz-history.html" class="active">Quiz History</a>
             </nav>
@@ -37,6 +376,11 @@
         </div>
 
     </header>
+
+    <a href="../index.html" class="rewind-home" aria-label="Back to home">
+        <span class="rewind-home-icon"><i class="fa-solid fa-clock-rotate-left"></i></span>
+        <span class="rewind-home-label">Rewind Home</span>
+    </a>
 
     <!-- Hero -->
 
